@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Timetable Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(90deg, rgba(255, 123, 37, 1) 0%, rgba(254, 178, 54, 1) 5%, rgba(3, 79, 132, 1) 85%);
+        }
+h2{
+color:white;
+}
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #103576;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        fieldset {
+            background-color: #fff;
+            border: 1px solid #ccc;
+        }
+
+        select,
+        input[type="submit"] {
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+            background-color: white;
+        }
+
+        th {
+            background-color: #B2B5E0;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            select,
+            input[type="submit"] {
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image" style="background-color:#103576;">
+            <img src="https://sraap.in/index_files/sr-university-logo.png" width="300" height="100" alt="University Logo">
+            <h2 style="background-color:#103576; color:white; text-align:center;">Department of Computer Science and Artificial Intelligence</h2>
+        </div>
+        <fieldset>
+            <form id="timetableForm">
+                <label for="year">Select Year:</label>
+                <select id="year" name="year">
+                    <option value="1">1st Year</option>
+                    <option value="2">2nd Year</option>
+                    <option value="3">3rd Year</option>
+                </select> &nbsp; &nbsp; &nbsp;
+                <label for="specialization">Select Specialization:</label>
+                <select id="specialization" name="specialization">
+                    <option value="csecore">General CSE</option>
+                    <option value="aiml">CSE-AIML</option>
+                    <option value="ds">CS AND DS</option>
+                </select>
+                <br><br>
+                <center><input type="submit" value="Submit"></center>
+            </form>
+        </fieldset>
+        <div id="sectionLinksTable" class="container">
+            <!-- Link tables will be inserted here dynamically -->
+        </div>
+    </div>
+
+  
+      <script>
+    const timetableForm = document.getElementById('timetableForm');
+    const sectionLinksTable = document.getElementById('sectionLinksTable');
+
+    timetableForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const selectedYear = timetableForm.year.value;
+        const selectedSpecialization = timetableForm.specialization.value;
+
+        // Clear existing content
+        sectionLinksTable.innerHTML = '';
+
+        // Show the section links table based on user input
+        if (selectedYear === '1') {
+            const firstYearLinkTable = `
+                <main>
+                    <section class="content">
+                        <h2>1st year CSE Sections</h2>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>Odd Sections</th>
+                                    <th>Even Sections</th>
+                                </tr>
+                                <tr>
+                                    <td><a href="#">CSE-A1</a></td>
+                                    <td><a href="#">CSE-A2</a></td>
+                                </tr>
+                                <tr> <td><a href="#">CSE-B1</a></td>
+                                    <td><a href="#">CSE-B2</a></td>
+                                </tr>
+                                <tr>                                    
+                                    <td><a href="#">CSE-C1</a></td>
+                                     <td><a href="#">CSE-C2</a></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#">CSE-D1</a></td>
+                                     <td><a href="#">CSE-D2</a></td>
+                                </tr>
+                                   <tr>                               
+                                  <td><a href="#">CSE-E1</a></td>
+                                    <td><a href="#">CSE-E2</a></td>
+                                </tr>
+                                <tr>
+                                   <td><a href="#">CSE-F1</a></td>
+                                    <td><a href="#">CSE-F2</a></td>
+                                </tr>
+                              <tr> <td><a href="#">CSE-G1</a></td>
+                                    <td><a href="#">CSE-G2</a></td>
+                                </tr>
+                                <tr> <td><a href="#">CSE-H1</a></td>
+                                    <td><a href="#">CSE-H2</a></td>
+                                </tr>
+                                    <tr> <td><a href="#">CSE-I1</a></td>
+                                    <td><a href="#">CSE-I2</a></td>
+                                </tr>
+                               <tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </main>
+            `;
+            sectionLinksTable.insertAdjacentHTML('beforeend', firstYearLinkTable);
+            sectionLinksTable.classList.add('show');
+        } else if (selectedYear === '2') {
+            if (selectedSpecialization === 'aiml') {
+                const aimlLinkTable = `
+                    <main>
+                        <section class="content">
+                            <h2>2nd year CSE (artificial intelligence and machine learning)</h2>
+                            <table>
+                                <tbody>
+                                    <tr>
+
+          <th>section</th>
+
+          <th>section</th>
+
+        </tr>
+
+        <tr>
+
+          <td><a href="http://sru.42web.io/wp-content/uploads/2023/08/2CSE-AIML-A-1.html">CSE-AA</a></td>
+
+          <td><a href="http://sru.42web.io/wp-content/uploads/2023/08/2CSE-AIML-C.html">CSE-AC</a></td>
+
+        </tr>
+<tr>
+
+          <td><a href="http://sru.42web.io/wp-content/uploads/2023/08/2CSE-AIML-B.html">CSE-AB</a></td>
+
+          <td><a href="http://sru.42web.io/wp-content/uploads/2023/08/2CSE-AIML-D.html">CSE-AD</a></td>
+    
+    </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                    </main>
+                `;
+                sectionLinksTable.insertAdjacentHTML('beforeend', aimlLinkTable);
+                sectionLinksTable.classList.add('show');
+            } 
+           else if (selectedSpecialization === 'ds') {
+                 const dsLinkTable = `
+                    <main>
+                        <section class="content">
+                            <h2>2nd year CSE (cyber security)</h2>
+                            <table>
+                                <tbody>
+                                    <tr>
+
+          <th>section</th>
+
+          <th>section</th>
+
+        </tr>
+
+        <tr>
+
+          <td><a href="http://sru.42web.io/wp-content/uploads/2023/08/2-CSE-DSCS.html">CSE-DS&CS</a></td>
+
+          <td></td>
+
+        </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                    </main>
+                `;
+                sectionLinksTable.insertAdjacentHTML('beforeend', dsLinkTable);
+                sectionLinksTable.classList.add('show');
+            
+            } else if (selectedSpecialization === 'csecore') {
+               const csecoreLinkTable = `
+                    <main>
+                        <section class="content">
+                            <h2>2nd year CSE (General CSE)</h2>
+                            <table>
+                                <tbody>
+                                    <tr>
+
+          <th>section</th>
+
+          <th>section</th>
+
+        </tr>
+
+        <tr>
+
+          <td><a href="http://sru.42web.io/wp-content/uploads/2023/08/2CSE-A.html">CSE-A</a></td>
+
+          <td><a href="http://sru.42web.io/wp-content/uploads/2023/08/2CSE-I.html">CSE-I</a></td>
+
+        </tr>
+<tr>
+
+          <td><a href="http://sru.42web.io/wp-content/uploads/2023/08/2CSE-B.html">CSE-B</a></td>
+
+          <td><a href="http://sru.42web.io/wp-content/uploads/2023/08/2CSE-J.html">CSE-J</a></td>
+    
+    </tr>
+   
+ <tr>
+          <td><a href="http://sru.42web.io/wp-content/uploads/2023/08/2CSE-C.html">CSE-C</a></td>
+   
+       <td><a href="http://sru.42web.io/wp-content/uploads/2023/08/2CSE-K.html">CSE-K</a></td>
+   
+     </tr>
+    
+     <tr>
+   
+       <td><a href="http://sru.42web.io/wp-content/uploads/2023/08/2CSE-D.html">CSE-D</a></td>
+         
+ <td><a href="http://sru.42web.io/wp-content/uploads/2023/08/2CSE-L.html">CSE-L</a></td>
+        </tr>
+ <tr>
+   
+       <td><a href="http://sru.42web.io/wp-content/uploads/2023/08/2CSE-E.html">CSE-E</a></td>
+         
+ <td><a href="http://sru.42web.io/wp-content/uploads/2023/08/2CSE-M.html">CSE-M</a></td>
+        </tr>
+ <tr>
+   
+       <td><a href="http://sru.42web.io/wp-content/uploads/2023/08/2CSE-F.html">CSE-F</a></td>
+         
+ <td><a href="http://sru.42web.io/wp-content/uploads/2023/08/2CSE-N.html">CSE-N</a></td>
+        </tr>
+ <tr>
+   
+       <td><a href="http://sru.42web.io/wp-content/uploads/2023/08/2CSE-G.html">CSE-G</a></td>
+         
+ <td><a href="http://sru.42web.io/wp-content/uploads/2023/08/2-CSE-O.html">CSE-O</a></td>
+        </tr>
+ <tr>
+   <td><a href="http://sru.42web.io/wp-content/uploads/2023/08/2CSE-H.html">CSE-H</a></td>
+         <td></td>
+        </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                    </main>
+                `;
+                sectionLinksTable.insertAdjacentHTML('beforeend', csecoreLinkTable);
+                sectionLinksTable.classList.add('show');
+            
+            }
+        } else if (selectedYear === '3') {
+            if (selectedSpecialization === 'aiml') {
+                const thirdYearAIMLLinkTable = `
+                <main>
+                    <section class="content">
+                       
+
+  
+
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>Section</th>
+                                </tr>
+                                <tr>
+                                    <td><a href="#">CSE-AIML-A</a></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#">CSE-AIML-B</a></td>
+                                </tr>
+                                 <tr>
+                                    <td><a href="#">CSE-AIML-C</a></td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </section>
+                </main>
+            `;
+            sectionLinksTable.insertAdjacentHTML('beforeend', thirdYearAIMLLinkTable);
+            sectionLinksTable.classList.add('show');
+       
+            } else if (selectedSpecialization === 'ds') {
+                const thirdYearDSLinkTable = `
+                <main>
+                    <section class="content">
+                        <h2>3rd year CSE (CS and DS)</h2>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>Section</th>
+<th>Section</th>
+                                </tr>
+                                <tr>
+                                    <td><a href="#">CSE-DS&CS-A</a></td>
+<td></td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </section>
+                </main>
+            `;
+            sectionLinksTable.insertAdjacentHTML('beforeend', thirdYearDSLinkTable);
+            sectionLinksTable.classList.add('show');
+            } else if (selectedSpecialization === 'csecore') {
+                const thirdYearCSELinkTable = `<main>
+                    <section class="content">
+                   <h2>3rd year General CSE Sections</h2>
+    
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>Section</th>
+                                     <th>section</th>
+                                </tr>
+                                <tr>
+                                    <td><a href="#">CSE-A</a></td>
+                                    <td><a href="#">CSE-G</a></td>
+                                </tr>
+                                <tr>
+                                   <td><a href="#">CSE-B</a></td>
+                                <td><a href="#">CSE-H</a></td>
+                                  </tr>
+   
+                                  <tr>
+                           <td><a href="#">CSE-C</a></td>
+   
+                           <td><a href="#">CSE-I</a></td>
+   
+     </tr>
+    
+     <tr>
+   
+       <td><a href="#">CSE-D</a></td>
+         
+ <td><a href="#">CSE-J</a></td>
+        </tr>
+ <tr>
+   
+       <td><a href="#">CSE-E</a></td>
+         
+ <td><a href="#">CSE-K</a></td>
+        </tr>
+<tr>
+   
+       <td><a href="#">CSE-F</a></td>
+         
+ <td></td>
+        </tr>
+ 
+              
+                            </tbody>
+                        </table>
+                    </section>
+                </main>
+                   
+                `;
+                sectionLinksTable.insertAdjacentHTML('beforeend', thirdYearCSELinkTable);
+                sectionLinksTable.classList.add('show');
+            }
+        }
+    });
+    </script>
+</body>
+</html>
